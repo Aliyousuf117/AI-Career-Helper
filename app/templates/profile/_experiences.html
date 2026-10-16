@@ -1,0 +1,38 @@
+<div id="experiences-block" class="fade-in">
+  <div class="flex items-center justify-between">
+    <h2 class="font-semibold">Experience</h2>
+    <span class="text-xs text-slate-500">{{ experiences|length }}</span>
+  </div>
+  {% if errors %}<div class="alert-error mt-3"><ul class="list-disc pl-5">{% for e in errors %}<li>{{ e }}</li>{% endfor %}</ul></div>{% endif %}
+
+  <ul class="mt-3 divide-y divide-slate-100">
+    {% for x in experiences %}
+    <li class="flex items-start justify-between gap-3 py-3 text-sm">
+      <div>
+        <p class="font-medium">{{ x.title }} <span class="badge bg-slate-100 text-slate-600">{{ x.kind.value }}</span></p>
+        <p class="text-slate-500">{{ x.organization or "" }}{% if x.start_date %} · {{ x.start_date }} – {{ x.end_date or "present" }}{% endif %}</p>
+        {% if x.description %}<p class="mt-1 whitespace-pre-line text-slate-700">{{ x.description }}</p>{% endif %}
+      </div>
+      <button class="text-xs text-rose-600 hover:underline" hx-delete="/profile/experiences/{{ x.id }}" hx-target="#experiences-block" hx-swap="outerHTML" hx-confirm="Remove this experience?">Remove</button>
+    </li>
+    {% else %}
+    <li class="py-3 text-sm text-slate-500">No experience added yet. Internships and volunteer work count too.</li>
+    {% endfor %}
+  </ul>
+
+  <details class="mt-2">
+    <summary class="cursor-pointer text-sm font-medium text-indigo-700">+ Add experience</summary>
+    <form hx-post="/profile/experiences" hx-target="#experiences-block" hx-swap="outerHTML" method="post" action="/profile/experiences" class="mt-3 grid gap-3 sm:grid-cols-2">
+      <input class="input" name="title" placeholder="Title *" required>
+      <select class="input" name="kind">
+        {% for k in experience_kinds %}<option value="{{ k.value }}">{{ k.value.title() }}</option>{% endfor %}
+      </select>
+      <input class="input" name="organization" placeholder="Organization">
+      <input class="input" name="location" placeholder="Location">
+      <input class="input" name="start_date" type="date" title="Start date">
+      <input class="input" name="end_date" type="date" title="End date (blank = current)">
+      <textarea class="input sm:col-span-2" name="description" rows="2" placeholder="What did you do? (action + impact)"></textarea>
+      <button class="btn-primary" type="submit">Add</button>
+    </form>
+  </details>
+</div>

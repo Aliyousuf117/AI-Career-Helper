@@ -1,0 +1,73 @@
+{% set f = form if form is defined else {} %}
+{% macro val(name) -%}{{ f.get(name) if f.get(name) is not none else (profile[name] if profile[name] is not none else '') }}{%- endmacro %}
+<form id="profile-form" hx-post="/profile/edit" hx-target="#profile-form" hx-swap="outerHTML" method="post" action="/profile/edit" class="space-y-6">
+  {% if errors %}
+    <div class="alert-error"><ul class="list-disc pl-5">{% for e in errors %}<li>{{ e }}</li>{% endfor %}</ul></div>
+  {% endif %}
+
+  <fieldset class="grid gap-4 sm:grid-cols-2">
+    <legend class="mb-2 text-sm font-semibold text-slate-900">Status & target</legend>
+    <div>
+      <label class="label" for="status">I am a</label>
+      <select class="input" id="status" name="status">
+        <option value="">Select…</option>
+        {% for s in statuses %}
+          <option value="{{ s.value }}" {% if (f.get('status') or (profile.status.value if profile.status else '')) == s.value %}selected{% endif %}>{{ s.value.replace("_"," ").title() }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div>
+      <label class="label" for="target_role">Target role</label>
+      <input class="input" id="target_role" name="target_role" placeholder="e.g. Python developer" value="{{ val('target_role') }}">
+    </div>
+    <div>
+      <label class="label" for="target_field">Field</label>
+      <input class="input" id="target_field" name="target_field" placeholder="e.g. Software engineering" value="{{ val('target_field') }}">
+    </div>
+    <div>
+      <label class="label" for="headline">Headline</label>
+      <input class="input" id="headline" name="headline" placeholder="CS graduate learning backend development" value="{{ val('headline') }}">
+    </div>
+  </fieldset>
+
+  <fieldset class="grid gap-4 sm:grid-cols-2">
+    <legend class="mb-2 text-sm font-semibold text-slate-900">About you</legend>
+    <div class="sm:col-span-2">
+      <label class="label" for="bio">Short bio</label>
+      <textarea class="input" id="bio" name="bio" rows="3">{{ val('bio') }}</textarea>
+    </div>
+    <div><label class="label" for="education">Education</label><input class="input" id="education" name="education" placeholder="BSc Computer Science, 2025" value="{{ val('education') }}"></div>
+    <div><label class="label" for="location">Location</label><input class="input" id="location" name="location" placeholder="City, Country" value="{{ val('location') }}"></div>
+    <div><label class="label" for="phone">Phone</label><input class="input" id="phone" name="phone" value="{{ val('phone') }}"></div>
+    <div><label class="label" for="linkedin_url">LinkedIn URL</label><input class="input" id="linkedin_url" name="linkedin_url" type="url" placeholder="https://www.linkedin.com/in/…" value="{{ val('linkedin_url') }}"></div>
+    <div><label class="label" for="github_url">GitHub URL</label><input class="input" id="github_url" name="github_url" type="url" value="{{ val('github_url') }}"></div>
+    <div><label class="label" for="portfolio_url">Portfolio URL</label><input class="input" id="portfolio_url" name="portfolio_url" type="url" value="{{ val('portfolio_url') }}"></div>
+  </fieldset>
+
+  <fieldset class="grid gap-4 sm:grid-cols-2">
+    <legend class="mb-2 text-sm font-semibold text-slate-900">Learning constraints</legend>
+    <div><label class="label" for="weekly_hours">Free hours per week</label><input class="input" id="weekly_hours" name="weekly_hours" type="number" min="1" max="80" value="{{ val('weekly_hours') }}"></div>
+    <div><label class="label" for="goal_date">Goal / deadline date</label><input class="input" id="goal_date" name="goal_date" type="date" value="{{ val('goal_date') }}"></div>
+    <div>
+      <label class="label" for="budget">Budget</label>
+      <select class="input" id="budget" name="budget">
+        {% for b in budgets %}<option value="{{ b.value }}" {% if (f.get('budget') or profile.budget.value) == b.value %}selected{% endif %}>{{ b.value.title() }}</option>{% endfor %}
+      </select>
+    </div>
+    <div><label class="label" for="preferred_language">Preferred language</label><input class="input" id="preferred_language" name="preferred_language" value="{{ val('preferred_language') }}"></div>
+    <div>
+      <label class="label" for="learning_style">Learning style</label>
+      <select class="input" id="learning_style" name="learning_style">
+        <option value="">Select…</option>
+        {% for ls in ["Video courses", "Reading / documentation", "Hands-on projects", "Live workshops", "Mixed"] %}
+          <option value="{{ ls }}" {% if val('learning_style') == ls %}selected{% endif %}>{{ ls }}</option>
+        {% endfor %}
+      </select>
+    </div>
+  </fieldset>
+
+  <div class="flex gap-3">
+    <button class="btn-primary" type="submit">Save changes <span class="htmx-indicator">…</span></button>
+    <a href="/profile" class="btn-secondary">Cancel</a>
+  </div>
+</form>

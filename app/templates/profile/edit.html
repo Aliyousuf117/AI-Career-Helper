@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Edit profile · {{ settings.app_name }}{% endblock %}
+{% block content %}
+<div class="mx-auto max-w-3xl">
+  <h1 class="text-2xl font-bold">Edit profile</h1>
+  <p class="mt-1 text-sm text-slate-600">The coach adapts its questions, roadmap and recommendations to these answers.</p>
+  <div class="card mt-6">
+    {% include "profile/_edit_form.html" %}
+  </div>
+</div>
+{% endblock %}

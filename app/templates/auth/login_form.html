@@ -1,0 +1,15 @@
+<form id="login-form" hx-post="/auth/login" hx-target="#login-form" hx-swap="outerHTML" method="post" action="/auth/login" class="space-y-4">
+  {% if error %}<p class="alert-error">{{ error }}</p>{% endif %}
+  <input type="hidden" name="next" value="{{ next or '/dashboard' }}">
+  <div>
+    <label class="label" for="email">Email</label>
+    <input class="input" id="email" name="email" type="email" autocomplete="email" required>
+  </div>
+  <div>
+    <label class="label" for="password">Password</label>
+    <input class="input" id="password" name="password" type="password" autocomplete="current-password" required>
+  </div>
+  <button class="btn-primary w-full" type="submit">
+    Log in <span class="htmx-indicator">…</span>
+  </button>
+</form>

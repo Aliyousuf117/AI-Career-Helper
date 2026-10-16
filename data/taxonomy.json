@@ -1,0 +1,122 @@
+{
+  "version": 1,
+  "skills": [
+    {"key": "python.syntax", "name": "Python syntax & basics", "category": "Python", "aliases": "python, python3, python basics, variables, control flow"},
+    {"key": "python.data_structures", "name": "Data structures (lists, dicts, sets)", "category": "Python", "aliases": "data structures, lists, dictionaries, comprehensions"},
+    {"key": "python.functions", "name": "Functions & modules", "category": "Python", "aliases": "functions, modules, packages, decorators"},
+    {"key": "python.oop", "name": "Object-oriented programming", "category": "Python", "aliases": "oop, classes, inheritance, object oriented"},
+    {"key": "python.file_io", "name": "File I/O & error handling", "category": "Python", "aliases": "file io, exceptions, error handling, csv, json"},
+    {"key": "python.testing", "name": "Testing (pytest)", "category": "Python", "aliases": "pytest, unittest, unit testing, tdd"},
+    {"key": "python.async", "name": "Async programming", "category": "Python", "aliases": "asyncio, async, await, concurrency"},
+    {"key": "python.packaging", "name": "Environments & packaging", "category": "Python", "aliases": "pip, venv, poetry, packaging"},
+
+    {"key": "web.http_apis", "name": "HTTP & REST APIs", "category": "Web", "aliases": "rest, rest api, http, api design, json api"},
+    {"key": "web.frameworks", "name": "Python web frameworks", "category": "Web", "aliases": "fastapi, django, flask"},
+    {"key": "web.html_css", "name": "HTML & CSS", "category": "Web", "aliases": "html, css, html5, css3, tailwind, bootstrap"},
+    {"key": "web.javascript", "name": "JavaScript", "category": "Web", "aliases": "javascript, js, es6, typescript"},
+    {"key": "web.react", "name": "React", "category": "Web", "aliases": "react, react.js, reactjs, next.js"},
+    {"key": "web.auth_security", "name": "Web security & authentication", "category": "Web", "aliases": "oauth, jwt, owasp, authentication, security"},
+
+    {"key": "db.sql", "name": "SQL", "category": "Databases", "aliases": "sql, mysql, postgresql, postgres, sqlite, queries"},
+    {"key": "db.orm", "name": "ORMs & data modelling", "category": "Databases", "aliases": "sqlalchemy, orm, django orm, data modeling"},
+    {"key": "db.nosql", "name": "NoSQL databases", "category": "Databases", "aliases": "mongodb, redis, nosql"},
+
+    {"key": "data.pandas", "name": "Data analysis (pandas, NumPy)", "category": "Data", "aliases": "pandas, numpy, data analysis, dataframes"},
+    {"key": "data.visualization", "name": "Data visualization", "category": "Data", "aliases": "matplotlib, seaborn, plotly, power bi, tableau, visualization"},
+    {"key": "data.statistics", "name": "Statistics", "category": "Data", "aliases": "statistics, probability, hypothesis testing, a/b testing"},
+    {"key": "data.excel", "name": "Spreadsheets (Excel)", "category": "Data", "aliases": "excel, google sheets, spreadsheets, pivot tables"},
+    {"key": "data.ml_basics", "name": "Machine learning fundamentals", "category": "Data", "aliases": "machine learning, scikit-learn, sklearn, ml"},
+
+    {"key": "tools.git", "name": "Git & GitHub", "category": "Tools", "aliases": "git, github, gitlab, version control"},
+    {"key": "tools.linux", "name": "Linux & command line", "category": "Tools", "aliases": "linux, bash, shell, command line, terminal"},
+    {"key": "devops.docker", "name": "Docker & containers", "category": "DevOps", "aliases": "docker, containers, docker-compose"},
+    {"key": "devops.ci_cd", "name": "CI/CD", "category": "DevOps", "aliases": "ci/cd, github actions, jenkins, continuous integration"},
+    {"key": "devops.cloud", "name": "Cloud deployment", "category": "DevOps", "aliases": "aws, azure, gcp, heroku, deployment, cloud"},
+
+    {"key": "soft.communication", "name": "Communication", "category": "Soft skills", "aliases": "communication, presentation, writing"},
+    {"key": "soft.teamwork", "name": "Teamwork & collaboration", "category": "Soft skills", "aliases": "teamwork, collaboration, agile, scrum"},
+    {"key": "soft.problem_solving", "name": "Problem solving", "category": "Soft skills", "aliases": "problem solving, algorithms, critical thinking"}
+  ],
+  "roles": [
+    {
+      "key": "python_developer",
+      "name": "Python Developer",
+      "field": "Software engineering",
+      "aliases": "python developer, python engineer, python programmer, junior python developer",
+      "requirements": [
+        {"skill": "python.syntax", "min_level": "advanced", "weight": 1.0},
+        {"skill": "python.data_structures", "min_level": "advanced", "weight": 1.0},
+        {"skill": "python.functions", "min_level": "intermediate", "weight": 0.9},
+        {"skill": "python.oop", "min_level": "intermediate", "weight": 0.9},
+        {"skill": "python.file_io", "min_level": "intermediate", "weight": 0.7},
+        {"skill": "python.testing", "min_level": "intermediate", "weight": 0.8},
+        {"skill": "python.packaging", "min_level": "beginner", "weight": 0.5},
+        {"skill": "web.http_apis", "min_level": "intermediate", "weight": 0.8},
+        {"skill": "web.frameworks", "min_level": "intermediate", "weight": 0.7},
+        {"skill": "db.sql", "min_level": "intermediate", "weight": 0.8},
+        {"skill": "tools.git", "min_level": "intermediate", "weight": 0.8},
+        {"skill": "devops.docker", "min_level": "beginner", "weight": 0.4, "is_core": false},
+        {"skill": "devops.cloud", "min_level": "beginner", "weight": 0.4, "is_core": false},
+        {"skill": "data.pandas", "min_level": "beginner", "weight": 0.3, "is_core": false},
+        {"skill": "soft.problem_solving", "min_level": "intermediate", "weight": 0.6}
+      ]
+    },
+    {
+      "key": "backend_developer",
+      "name": "Backend Developer (Python)",
+      "field": "Software engineering",
+      "aliases": "backend developer, back-end developer, backend engineer, api developer",
+      "requirements": [
+        {"skill": "python.syntax", "min_level": "advanced", "weight": 1.0},
+        {"skill": "python.oop", "min_level": "intermediate", "weight": 0.8},
+        {"skill": "python.async", "min_level": "intermediate", "weight": 0.6},
+        {"skill": "python.testing", "min_level": "intermediate", "weight": 0.8},
+        {"skill": "web.http_apis", "min_level": "advanced", "weight": 1.0},
+        {"skill": "web.frameworks", "min_level": "advanced", "weight": 1.0},
+        {"skill": "web.auth_security", "min_level": "intermediate", "weight": 0.7},
+        {"skill": "db.sql", "min_level": "advanced", "weight": 0.9},
+        {"skill": "db.orm", "min_level": "intermediate", "weight": 0.7},
+        {"skill": "db.nosql", "min_level": "beginner", "weight": 0.3, "is_core": false},
+        {"skill": "tools.git", "min_level": "intermediate", "weight": 0.8},
+        {"skill": "tools.linux", "min_level": "intermediate", "weight": 0.5},
+        {"skill": "devops.docker", "min_level": "intermediate", "weight": 0.6},
+        {"skill": "devops.ci_cd", "min_level": "beginner", "weight": 0.4, "is_core": false},
+        {"skill": "devops.cloud", "min_level": "beginner", "weight": 0.5}
+      ]
+    },
+    {
+      "key": "data_analyst",
+      "name": "Data Analyst",
+      "field": "Data",
+      "aliases": "data analyst, business analyst, bi analyst, junior data analyst",
+      "requirements": [
+        {"skill": "data.excel", "min_level": "advanced", "weight": 0.9},
+        {"skill": "db.sql", "min_level": "advanced", "weight": 1.0},
+        {"skill": "python.syntax", "min_level": "intermediate", "weight": 0.7},
+        {"skill": "data.pandas", "min_level": "intermediate", "weight": 0.9},
+        {"skill": "data.visualization", "min_level": "advanced", "weight": 0.9},
+        {"skill": "data.statistics", "min_level": "intermediate", "weight": 0.8},
+        {"skill": "data.ml_basics", "min_level": "beginner", "weight": 0.3, "is_core": false},
+        {"skill": "tools.git", "min_level": "beginner", "weight": 0.3, "is_core": false},
+        {"skill": "soft.communication", "min_level": "advanced", "weight": 0.8},
+        {"skill": "soft.problem_solving", "min_level": "intermediate", "weight": 0.6}
+      ]
+    },
+    {
+      "key": "frontend_developer",
+      "name": "Frontend Developer",
+      "field": "Software engineering",
+      "aliases": "frontend developer, front-end developer, web developer, ui developer",
+      "requirements": [
+        {"skill": "web.html_css", "min_level": "advanced", "weight": 1.0},
+        {"skill": "web.javascript", "min_level": "advanced", "weight": 1.0},
+        {"skill": "web.react", "min_level": "intermediate", "weight": 0.9},
+        {"skill": "web.http_apis", "min_level": "intermediate", "weight": 0.6},
+        {"skill": "tools.git", "min_level": "intermediate", "weight": 0.8},
+        {"skill": "python.testing", "min_level": "beginner", "weight": 0.2, "is_core": false},
+        {"skill": "devops.ci_cd", "min_level": "beginner", "weight": 0.3, "is_core": false},
+        {"skill": "soft.teamwork", "min_level": "intermediate", "weight": 0.5}
+      ]
+    }
+  ]
+}

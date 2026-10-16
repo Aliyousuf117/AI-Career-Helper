@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Log in · {{ settings.app_name }}{% endblock %}
+{% block content %}
+<div class="mx-auto max-w-md py-8">
+  <h1 class="text-2xl font-bold">Welcome back</h1>
+  <p class="mt-1 text-sm text-slate-600">Log in to continue your career plan.</p>
+  <div class="card mt-6">
+    {% include "auth/login_form.html" %}
+    {% include "auth/_oauth_buttons.html" %}
+  </div>
+  <p class="mt-4 text-center text-sm text-slate-600">No account? <a href="/register" class="font-medium text-indigo-700 underline">Create one</a></p>
+</div>
+{% endblock %}

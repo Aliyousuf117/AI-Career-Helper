@@ -1,0 +1,21 @@
+<form id="register-form" hx-post="/auth/register" hx-target="#register-form" hx-swap="outerHTML" method="post" action="/auth/register" class="space-y-4">
+  {% if error %}<p class="alert-error">{{ error }}</p>{% endif %}
+  <div>
+    <label class="label" for="full_name">Full name</label>
+    <input class="input" id="full_name" name="full_name" type="text" autocomplete="name" required value="{{ form.full_name or '' }}">
+  </div>
+  <div>
+    <label class="label" for="email">Email</label>
+    <input class="input" id="email" name="email" type="email" autocomplete="email" required value="{{ form.email or '' }}">
+  </div>
+  <div>
+    <label class="label" for="password">Password <span class="font-normal text-slate-400">(min. 8 characters)</span></label>
+    <input class="input" id="password" name="password" type="password" autocomplete="new-password" minlength="8" required>
+  </div>
+  <label class="flex items-start gap-2 text-sm text-slate-600">
+    <input type="checkbox" name="accept_terms" value="true" class="mt-1 rounded border-slate-300" required>
+    <span>I understand that AI recommendations are guidance, not guarantees, and that no external action
+      (calendar, registration, email) happens without my approval.</span>
+  </label>
+  <button class="btn-primary w-full" type="submit">Create account <span class="htmx-indicator">…</span></button>
+</form>

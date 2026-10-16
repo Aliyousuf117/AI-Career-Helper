@@ -1,0 +1,33 @@
+<div id="projects-block" class="fade-in">
+  <div class="flex items-center justify-between">
+    <h2 class="font-semibold">Projects</h2>
+    <span class="text-xs text-slate-500">{{ projects|length }}</span>
+  </div>
+  {% if errors %}<div class="alert-error mt-3"><ul class="list-disc pl-5">{% for e in errors %}<li>{{ e }}</li>{% endfor %}</ul></div>{% endif %}
+
+  <ul class="mt-3 divide-y divide-slate-100">
+    {% for p in projects %}
+    <li class="flex items-start justify-between gap-3 py-3 text-sm">
+      <div>
+        <p class="font-medium">{{ p.name }}{% if p.url %} · <a class="text-indigo-700 underline" href="{{ p.url }}" target="_blank" rel="noopener">link</a>{% endif %}</p>
+        {% if p.description %}<p class="text-slate-700">{{ p.description }}</p>{% endif %}
+        {% if p.technologies %}<p class="mt-1 flex flex-wrap gap-1">{% for t in p.technologies %}<span class="badge bg-indigo-50 text-indigo-700">{{ t }}</span>{% endfor %}</p>{% endif %}
+      </div>
+      <button class="text-xs text-rose-600 hover:underline" hx-delete="/profile/projects/{{ p.id }}" hx-target="#projects-block" hx-swap="outerHTML" hx-confirm="Remove this project?">Remove</button>
+    </li>
+    {% else %}
+    <li class="py-3 text-sm text-slate-500">No projects yet. Portfolio pieces are strong evidence of skills.</li>
+    {% endfor %}
+  </ul>
+
+  <details class="mt-2">
+    <summary class="cursor-pointer text-sm font-medium text-indigo-700">+ Add project</summary>
+    <form hx-post="/profile/projects" hx-target="#projects-block" hx-swap="outerHTML" method="post" action="/profile/projects" class="mt-3 grid gap-3 sm:grid-cols-2">
+      <input class="input" name="name" placeholder="Project name *" required>
+      <input class="input" name="url" type="url" placeholder="Repository / demo URL">
+      <input class="input sm:col-span-2" name="technologies" placeholder="Technologies, comma separated (Python, FastAPI, SQL)">
+      <textarea class="input sm:col-span-2" name="description" rows="2" placeholder="What does it do? What did you build?"></textarea>
+      <button class="btn-primary" type="submit">Add</button>
+    </form>
+  </details>
+</div>

@@ -1,0 +1,15 @@
+<div class="my-5 flex items-center gap-3 text-xs text-slate-400">
+  <span class="h-px flex-1 bg-slate-200"></span>or continue with<span class="h-px flex-1 bg-slate-200"></span>
+</div>
+<div class="grid gap-2 sm:grid-cols-2">
+  {% if settings.linkedin_enabled %}
+    <a href="/auth/linkedin/login" class="btn-secondary">LinkedIn</a>
+  {% else %}
+    <button class="btn-secondary" type="button" disabled title="Set LINKEDIN_CLIENT_ID / SECRET in .env">LinkedIn (not configured)</button>
+  {% endif %}
+  {% if settings.google_enabled %}
+    <a href="/auth/google/login" class="btn-secondary">Google</a>
+  {% else %}
+    <button class="btn-secondary" type="button" disabled title="Set GOOGLE_CLIENT_ID / SECRET in .env">Google (not configured)</button>
+  {% endif %}
+</div>

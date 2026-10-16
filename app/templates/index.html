@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="grid items-center gap-10 py-10 md:grid-cols-2">
+  <div>
+    <p class="badge bg-indigo-100 text-indigo-700">Personal AI career coach</p>
+    <h1 class="mt-4 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">
+      From <span class="text-indigo-600">"where am I now?"</span> to <span class="text-indigo-600">"where can I apply?"</span>
+    </h1>
+    <p class="mt-4 text-lg text-slate-600">
+      {{ settings.app_name }} analyses your experience, finds the gaps for your target role, builds a
+      three-stage roadmap with real courses and workshops, schedules them, tests your progress, and
+      matches you with jobs.
+    </p>
+    <div class="mt-6 flex flex-wrap gap-3">
+      {% if user %}
+        <a href="/dashboard" class="btn-primary">Go to dashboard</a>
+      {% else %}
+        <a href="/register" class="btn-primary">Create a free account</a>
+        <a href="/login" class="btn-secondary">Log in</a>
+      {% endif %}
+    </div>
+    {% if request.query_params.get("deleted") %}
+      <p class="alert-ok mt-6">Your account and all associated data have been deleted.</p>
+    {% endif %}
+  </div>
+
+  <div class="grid gap-4 sm:grid-cols-2">
+    {% for title, text in [
+      ("1. Tell us where you are", "Student or job seeker, target role, CV upload, and your weekly free hours."),
+      ("2. Get your roadmap", "Beginner, Intermediate and Advanced stages with projects and realistic timelines."),
+      ("3. Learn with real resources", "Verified course and workshop links, scheduled into your calendar with your approval."),
+      ("4. Prove it and get hired", "Stage quizzes unlock the next level, then matched job openings and outreach drafts."),
+    ] %}
+    <div class="card">
+      <h3 class="font-semibold text-slate-900">{{ title }}</h3>
+      <p class="mt-1 text-sm text-slate-600">{{ text }}</p>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

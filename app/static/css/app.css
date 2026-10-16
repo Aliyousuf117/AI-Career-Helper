@@ -1,0 +1,8 @@
+/* Plain CSS additions (component classes live in base.html's Tailwind layer). */
+
+.htmx-indicator { display: none; }
+.htmx-request .htmx-indicator, .htmx-request.htmx-indicator { display: inline-flex; }
+
+/* Smooth swap for HTMX partials */
+.fade-in { animation: fade-in 0.18s ease-out; }
+@keyframes fade-in { from { opacity: 0; transform: translateY(2px); } to { opacity: 1; transform: none; } }

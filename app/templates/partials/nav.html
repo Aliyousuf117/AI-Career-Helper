@@ -1,0 +1,38 @@
+<header class="border-b border-slate-200 bg-white">
+  <nav class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+    <a href="/" class="flex items-center gap-2 text-lg font-bold text-indigo-700">
+      <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-600 text-white">AI</span>
+      <span>{{ settings.app_name }}</span>
+    </a>
+
+    <div class="hidden items-center gap-5 text-sm font-medium text-slate-700 md:flex">
+      {% if user %}
+        <a href="/dashboard" class="hover:text-indigo-700">Dashboard</a>
+        <a href="/profile" class="hover:text-indigo-700">Profile</a>
+        <a href="/settings" class="hover:text-indigo-700">Settings</a>
+        <form method="post" action="/auth/logout">
+          <button class="btn-secondary px-3 py-1.5" type="submit">Log out</button>
+        </form>
+      {% else %}
+        <a href="/login" class="hover:text-indigo-700">Log in</a>
+        <a href="/register" class="btn-primary px-3 py-1.5">Get started</a>
+      {% endif %}
+    </div>
+
+    <button data-nav-toggle class="rounded-lg p-2 text-slate-600 hover:bg-slate-100 md:hidden" aria-label="Menu">
+      <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </nav>
+
+  <div id="mobile-menu" class="hidden border-t border-slate-200 px-4 py-3 text-sm md:hidden">
+    {% if user %}
+      <a href="/dashboard" class="block py-2">Dashboard</a>
+      <a href="/profile" class="block py-2">Profile</a>
+      <a href="/settings" class="block py-2">Settings</a>
+      <form method="post" action="/auth/logout" class="py-2"><button class="btn-secondary w-full" type="submit">Log out</button></form>
+    {% else %}
+      <a href="/login" class="block py-2">Log in</a>
+      <a href="/register" class="block py-2 font-semibold text-indigo-700">Get started</a>
+    {% endif %}
+  </div>
+</header>

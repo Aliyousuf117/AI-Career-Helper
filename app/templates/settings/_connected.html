@@ -1,0 +1,27 @@
+<div id="connected-block" class="space-y-3 fade-in">
+  {% if error %}<p class="alert-error">{{ error }}</p>{% endif %}
+  {% for provider in ["linkedin", "google"] %}
+    {% set acct = linked.get(provider) %}
+    <div class="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-slate-200 p-3">
+      <div>
+        <p class="font-medium">{{ provider.title() }}</p>
+        {% if acct %}
+          <p class="text-xs text-slate-500">Linked as {{ acct.email or acct.display_name }}
+            {% if provider == "google" %} · Calendar: {{ "granted" if acct.has_scope("https://www.googleapis.com/auth/calendar.events") else "not yet" }}
+              · Gmail send: {{ "granted" if acct.has_scope("https://www.googleapis.com/auth/gmail.send") else "not yet" }}{% endif %}</p>
+        {% elif not providers[provider] %}
+          <p class="text-xs text-slate-500">Not configured on this server (set {{ provider.upper() }}_CLIENT_ID / SECRET).</p>
+        {% else %}
+          <p class="text-xs text-slate-500">Not linked.</p>
+        {% endif %}
+      </div>
+      <div class="flex gap-2">
+        {% if acct %}
+          <button class="btn-secondary px-3 py-1.5 text-xs" hx-delete="/settings/oauth/{{ provider }}" hx-target="#connected-block" hx-swap="outerHTML" hx-confirm="Unlink {{ provider.title() }}?">Unlink</button>
+        {% elif providers[provider] %}
+          <a class="btn-primary px-3 py-1.5 text-xs" href="/auth/{{ provider }}/login">Connect</a>
+        {% endif %}
+      </div>
+    </div>
+  {% endfor %}
+</div>
